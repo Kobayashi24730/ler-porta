@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitor de pH</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      color: #1565c0;
+    }
+    #ph {
+      font-size: 48px;
+      color: #2e7d32;
+      margin-top: 20px;
+      background: #fff;
+      padding: 20px;
+      display: inline-block;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Leitura de pH da Água</h1>
+  <div id="ph">Aguardando...</div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    socket.on('arduinoData', (data) => {
+      document.getElementById('ph').textContent = pH: ${parseFloat(data).toFixed(2)};
+    });
+  </script>
+</body>
+</html>
